@@ -1,8 +1,25 @@
 /**
- * Standalone Form Handler for HousEase
- * Preserves Webflow form states (.w-form-done / .w-form-fail) cleanly when self-hosted.
+ * Standalone Form Handler for The Polished Standard
+ * Preserves Webflow form states (.w-form-done / .w-form-fail) and custom validation messages.
  */
 (function () {
+  function attachCustomValidation($form) {
+    $form.find("input, select, textarea").on("invalid input change", function (e) {
+      var el = this;
+      if (!el.setCustomValidity) return;
+      el.setCustomValidity("");
+      if (!el.validity.valid) {
+        if (el.tagName.toLowerCase() === "select" && el.name === "service" && el.validity.valueMissing) {
+          el.setCustomValidity("Please choose a cleaning service.");
+        } else if (el.type === "email" && (el.validity.typeMismatch || el.validity.badInput)) {
+          el.setCustomValidity("Please enter a valid email address.");
+        } else if (el.validity.valueMissing) {
+          el.setCustomValidity("Please complete this field.");
+        }
+      }
+    });
+  }
+
   function initStandaloneForms() {
     if (!window.jQuery) return;
     var $ = window.jQuery;
@@ -19,6 +36,8 @@
     $(".w-form form").each(function () {
       var $form = $(this);
       if ($form.hasClass("w-password-page")) return;
+      attachCustomValidation($form);
+
       var action = $form.attr("action");
       if (action && action !== "#" && !action.startsWith("/.wf_")) return;
 
@@ -39,7 +58,7 @@
         var $fail = $wrap.find("> .w-form-fail");
         var $btn = $form.find(':input[type="submit"]');
         var origText = $btn.val();
-        var waitText = $btn.attr("data-wait");
+        var waitText = $btn.attr("data-wait") || "Sending…";
 
         if (waitText) $btn.val(waitText);
         $btn.prop("disabled", true);
@@ -52,7 +71,6 @@
           if (waitText) $btn.val(origText);
         };
 
-        // Optional POST to local /api/form if available, always succeeding gracefully on static hosts
         var payload = {};
         $form.serializeArray().forEach(function (item) {
           payload[item.name] = item.value;

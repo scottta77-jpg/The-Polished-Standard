@@ -9944,3 +9944,135 @@ strong {
     grid-area: span 1 / span 1 / span 1 / span 1;
   }
 }
+
+/* --- The Polished Standard Custom Typography & Layout Overrides --- */
+.navbar .brand-name {
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.about-info-wrap .brand-name.black {
+  font-size: 2.35rem;
+  line-height: 1.15;
+  text-align: center;
+  max-width: 28rem;
+}
+
+.footer .brand-name {
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.about-top-right .stat-counter-text,
+.about-right-bottom .stat-counter-text {
+  font-size: 2.5rem;
+  line-height: 1.15;
+}
+
+.pricing-prices {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.hero-pill-text {
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.blog-hero-aside-number {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+a.recurring-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+}
+
+.blog-card-excerpt {
+  margin-top: 0.65rem;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #4b5563;
+}
+
+.blog-category-pill {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 0.85rem;
+  border-radius: 999px;
+  background-color: #f3f4f6;
+  color: #111827;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.detail-form-textarea {
+  min-height: 6.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  resize: vertical;
+}
+
+.form-privacy-helper,
+.form-availability-note {
+  margin-top: 0.65rem;
+  margin-bottom: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #6b7280;
+}
+
+.contact-social-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+#service-areas .contact-card-pill {
+  white-space: normal;
+  height: auto;
+  padding: 0.65rem 1.15rem;
+  line-height: 1.4;
+  max-width: 100%;
+}
+
+.hero-content-wrap {
+  max-width: 58rem;
+}
+
+.hero-content-wrap p.hero-summary {
+  max-width: 42rem;
+}
+
+.section.hero h1.hero-heading {
+  font-size: 4.5rem;
+  max-width: 58rem;
+}
+
+@media screen and (max-width: 767px) {
+  .section.hero h1.hero-heading {
+    font-size: 2.35rem;
+  }
+  .navbar .brand-name {
+    font-size: 1.2rem;
+  }
+  .about-info-wrap .brand-name.black {
+    font-size: 1.85rem;
+  }
+  .pricing-prices {
+    font-size: 1.65rem;
+  }
+  .about-top-right .stat-counter-text,
+  .about-right-bottom .stat-counter-text {
+    font-size: 2rem;
+  }
+}
+
