@@ -97,6 +97,53 @@
     });
   }
 
+  function initHeroCarousel() {
+    var box = document.querySelector(".image-animation-box");
+    if (!box) return;
+    var groups = Array.prototype.slice.call(box.querySelectorAll(".image-group-main"));
+    if (!groups.length) return;
+
+    var count = groups.length;
+    var stepDeg = 180 / count;
+    var speedDegPerSec = 360 / 40; // 40s per 360deg revolution
+
+    function updateCarousel() {
+      var nowSec = performance.now() / 1000;
+      var baseDeg = (nowSec * speedDegPerSec) % 360;
+      for (var i = 0; i < count; i++) {
+        var g = groups[i];
+        var deg = (baseDeg + i * stepDeg) % 360;
+        g.style.visibility = "visible";
+        g.style.transform = "rotateX(0deg) rotateY(" + deg.toFixed(4) + "deg) rotateZ(0deg)";
+        var b0 = g.children[0];
+        var b1 = g.children[1];
+        // Cull cards while they travel off-screen behind the camera lens plane (Z > perspective)
+        if (b0) {
+          b0.style.visibility = (deg >= 12 && deg <= 168) ? "hidden" : "visible";
+        }
+        if (b1) {
+          b1.style.visibility = (deg >= 192 && deg <= 348) ? "hidden" : "visible";
+        }
+      }
+    }
+
+    if (window.gsap && window.gsap.ticker) {
+      window.gsap.ticker.add(updateCarousel);
+    } else {
+      function rafLoop() {
+        updateCarousel();
+        requestAnimationFrame(rafLoop);
+      }
+      requestAnimationFrame(rafLoop);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeroCarousel);
+  } else {
+    initHeroCarousel();
+  }
+
   window.Webflow = window.Webflow || [];
   window.Webflow.push(initStandaloneForms);
 })();

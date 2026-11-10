@@ -3358,7 +3358,7 @@ strong {
   padding-right: var(--_spacing---space-1-medium);
   padding-bottom: var(--_spacing---space-1-large);
   padding-left: var(--_spacing---space-1-medium);
-  background-image: url("/assets/images/6a91a3b443cb7b832f444f1f_Rectangle-134-1.avif");
+  background-image: url("/assets/images/window-cleaning-lady.png");
   background-position: 0 0;
   background-size: cover;
   justify-content: center;
@@ -6607,7 +6607,7 @@ strong {
   transform-style: preserve-3d;
   justify-content: center;
   align-items: center;
-  transform: rotateX(0)rotateY(90deg)rotateZ(0);
+  transform: rotateX(0)rotateY(-90deg)rotateZ(0);
 }
 
 .hero-image-block._01 {
@@ -9946,6 +9946,33 @@ strong {
 }
 
 /* --- The Polished Standard Custom Typography & Layout Overrides --- */
+.navbrand,
+.footer-brand-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-logo-img {
+  height: 9.25rem;
+  width: auto;
+  max-width: none;
+  display: block;
+  object-fit: contain;
+  margin: -0.25rem 0 -1.35rem 0;
+}
+
+.brand-logo-img.brand-logo-on-light {
+  filter: brightness(0.68) saturate(1.35) contrast(1.15);
+}
+
+.footer-logo-img {
+  height: 13.5rem;
+  width: auto;
+  max-width: none;
+  display: block;
+  object-fit: contain;
+}
+
 .navbar .brand-name {
   font-size: 1.45rem;
   font-weight: 500;
@@ -10153,6 +10180,240 @@ a.recurring-card {
   }
 }
 
+/* --- Seamless Hero Banner & Marquee Loop Fixes --- */
+.hero-area:not(.blog) {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.22) 58%,
+      rgba(242, 242, 242, 0.55) 86%,
+      #f2f2f2 100%
+    ),
+    url("/assets/images/6a8f299ef883ff92404fe169_Rectangle-36.avif");
+  position: relative;
+}
+
+.hero-area:not(.blog) > .section.hero > .space-6-medium {
+  padding-top: 2rem;
+}
+
+.hero-area:not(.blog)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5.5rem;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(242, 242, 242, 0) 0%,
+    rgba(242, 242, 242, 0.72) 68%,
+    #f2f2f2 100%
+  );
+}
+
+.about-marque {
+  width: 100%;
+  max-width: 43rem;
+  display: flex;
+  justify-content: center;
+}
+
+.about-marque-item-wrapper {
+  width: 100%;
+  max-width: 43rem;
+  grid-column-gap: 0rem;
+  column-gap: 0rem;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+}
+
+.about-marque-item {
+  padding-right: var(--_spacing---space-1-extra-small);
+  white-space: nowrap;
+}
+
+.about-marque-item-block {
+  white-space: nowrap;
+}
+
+.marquee-cta-row-wrap {
+  grid-column-gap: 0rem;
+  column-gap: 0rem;
+}
+
+.marquee-cta-row {
+  flex: none;
+  padding-right: var(--_spacing---space-1-normal);
+}
+
+.text-marque-main {
+  left: 0;
+  grid-column-gap: 0rem;
+  column-gap: 0rem;
+}
+
+.services-main-wrap {
+  overflow-x: clip;
+}
+
+.service-marque-list {
+  padding-right: var(--_spacing---space-2-medium);
+}
+
+.service-marque-text {
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 767px) {
+  .about-marque,
+  .about-marque-item-wrapper {
+    width: 40rem;
+    max-width: 40rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .about-marque,
+  .about-marque-item-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* --- The Polished Standard Brand Colour Palette (Hero Blues + Champagne Gold) --- */
+/* 1. Solid Upper Blue (#2E66BC) replacing black backgrounds (Services, Testimonials, Footer, dark cards) */
+.section.service,
+.section.black,
+.footer,
+.pricing-card-info-wrap.middle,
+.about-top-right {
+  background-color: #2E66BC;
+}
+
+@media screen and (max-width: 991px) {
+  .nav-menu {
+    background-color: #2E66BC;
+  }
+}
+
+/* 2. Champagne Gold (#F4D09A) primary accents & Middle Blue (#438FBC) secondary accents */
+.navbar .brand-name,
+.footer .brand-name,
+.section.service .badge-logo,
+.section.black .badge-logo,
+.badge-logo:where(.w-variant-d27050b4-200b-4418-9994-5124c954770c),
+.marque-icon {
+  color: #F4D09A;
+}
+
+.badge-logo,
+.badge-logo:where(.w-variant-f504aeda-a6e6-1a50-3fdf-fed974122677),
+.benefit-logo,
+.pricing-featuer-icon,
+.contact-icon-svg,
+.about-stat-icon {
+  color: #438FBC;
+}
+
+.feature-icon-wrap,
+.core-value-icon,
+.project-info-icon,
+.service-icon-wrapper,
+.service-icon-wrap {
+  background-color: #2E66BC;
+  color: #F4D09A;
+}
+
+.feature-icon,
+.service-icon {
+  color: #F4D09A;
+}
+
+.nav-link-dot,
+.footer .dot,
+.project-meta-dot {
+  background-color: #F4D09A !important;
+}
+
+.most-popula {
+  background-color: #F4D09A;
+  color: #2E66BC;
+}
+
+/* 3. Light text (#FFFFFF) on #2E66BC backgrounds */
+.section.service .section-title,
+.section.service .badge-title,
+.section.service .service-marque-text,
+.section.black .section-title,
+.section.black .badge-title,
+.section.black .marquee-cta-head,
+.section.black .marquee-cta-text,
+.badge-title:where(.w-variant-d27050b4-200b-4418-9994-5124c954770c),
+.pricing-card-info-wrap.middle .pricing-titel-top,
+.pricing-card-info-wrap.middle .pricing-prices,
+.pricing-card-info-wrap.middle .pricing-p,
+.about-top-right .stat-counter-text,
+.about-top-right .stat-card-titel,
+.footer .main-page-titel-text,
+.footer .contact-information-titel-text,
+.footer .footer-link,
+.footer .footer-paragraph,
+.footer .social-text,
+.footer .footer-bottom-text,
+.footer .footer-bottom-strong {
+  color: #FFFFFF;
+}
+
+.footer .footer-link:hover,
+.footer .social-link:hover .social-text {
+  color: #F4D09A;
+}
+
+/* 4. Subtle borders & dividers on #2E66BC sections using Softer Lower Blue (#619FBC) */
+.section.service .section-badge,
+.section.black .section-badge {
+  background-color: transparent;
+}
+
+.section-badge:where(.w-variant-d27050b4-200b-4418-9994-5124c954770c),
+.section.service .section-badge,
+.section.black .section-badge,
+.section.black .marquee-cta-card,
+.review-slider .team-img-small,
+.slider-btn,
+.s-slider-button,
+.social-link {
+  border-color: #619FBC;
+}
+
+.slider-btn,
+.s-slider-button {
+  color: #FFFFFF;
+}
+
+.slider-btn:hover,
+.s-slider-button:hover {
+  background-color: #F4D09A;
+  border-color: #F4D09A;
+  color: #2E66BC;
+}
+
+.footer-left,
+.footer-middle {
+  border-right-color: rgba(97, 159, 188, 0.55);
+}
+
+.footer-line,
+.footer-bottom-line {
+  background-color: rgba(97, 159, 188, 0.55);
+  opacity: 1;
+}
+
 @media screen and (max-width: 991px) {
   .faq-buttom-gird {
     grid-template-columns: 1fr;
@@ -10165,6 +10426,13 @@ a.recurring-card {
   }
   .navbar .brand-name {
     font-size: 1.2rem;
+  }
+  .brand-logo-img {
+    height: 6.25rem;
+    margin: -0.75rem 0;
+  }
+  .footer-logo-img {
+    height: 9.5rem;
   }
   .about-info-wrap .brand-name.black {
     font-size: 1.85rem;
