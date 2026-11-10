@@ -10107,6 +10107,52 @@ a.recurring-card {
   grid-template-columns: 1fr auto;
 }
 
+.image-group-main._01 {
+  display: flex;
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(0deg) rotateZ(0);
+}
+
+.image-group-main._02 {
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(25.714deg) rotateZ(0);
+}
+
+.image-group-main._03 {
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(51.429deg) rotateZ(0);
+}
+
+.image-group-main._04 {
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(77.143deg) rotateZ(0);
+}
+
+.image-group-main._05 {
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(102.857deg) rotateZ(0);
+}
+
+.image-group-main._06 {
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(128.571deg) rotateZ(0);
+}
+
+.image-group-main._07 {
+  transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(154.286deg) rotateZ(0);
+}
+
+.section.hero .hero-image-block {
+  width: 17.5rem;
+}
+
+@media screen and (min-width: 1440px) {
+  .section.hero .hero-image-block {
+    width: 19.2vw;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .faq-buttom-gird {
     grid-template-columns: 1fr;
