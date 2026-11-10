@@ -138,10 +138,48 @@
     }
   }
 
+  function initCloserLookScroll() {
+    var track = document.querySelector(".closer-look-scroll-track");
+    var stage = document.querySelector(".closer-look-stage");
+    if (!track || !stage) return;
+
+    function updateCloserLook() {
+      var rect = track.getBoundingClientRect();
+      var scrollable = track.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+
+      var rawProgress = -rect.top / scrollable;
+      var clamped = Math.max(0, Math.min(1, rawProgress));
+
+      // Hold messy room for first 8% of scroll, clean across 8%..88%, hold spotless room for 88%..100%
+      var cleanProgress = (clamped - 0.08) / 0.80;
+      cleanProgress = Math.max(0, Math.min(1, cleanProgress));
+
+      // Smoothstep easing for ultra-fluid feel while scrubbing
+      var eased = cleanProgress * cleanProgress * (3 - 2 * cleanProgress);
+      var sweepPct = -12 + eased * 124; // -12% -> +112%
+
+      stage.style.setProperty("--clean-sweep", sweepPct.toFixed(2) + "%");
+      if (cleanProgress >= 0.85) {
+        stage.classList.add("is-cleaned");
+      } else {
+        stage.classList.remove("is-cleaned");
+      }
+    }
+
+    updateCloserLook();
+    window.addEventListener("scroll", updateCloserLook, { passive: true });
+    window.addEventListener("resize", updateCloserLook);
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initHeroCarousel);
+    document.addEventListener("DOMContentLoaded", function () {
+      initHeroCarousel();
+      initCloserLookScroll();
+    });
   } else {
     initHeroCarousel();
+    initCloserLookScroll();
   }
 
   window.Webflow = window.Webflow || [];

@@ -9973,6 +9973,120 @@ strong {
   object-fit: contain;
 }
 
+img[src*="airbnb-cleaning.png"] {
+  object-position: 50% 22%;
+}
+
+.feature-bg-video .w-background-video--control {
+  display: none !important;
+}
+
+/* --- A Closer Look: Pinned Stop-Scroll Cleanup Animation --- */
+.section.before-after {
+  display: block;
+}
+
+.closer-look-scroll-track {
+  position: relative;
+  width: 100%;
+  height: 280vh;
+}
+
+.closer-look-sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+  overflow: hidden;
+}
+
+.closer-look-sticky .before-after-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.closer-look-stage {
+  --clean-sweep: -12%;
+  position: relative;
+  width: min(100%, calc(min(68vh, 45.5rem) * 1.72));
+  height: min(68vh, 45.5rem);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--_border-radius---border-radius--border-normal);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  background-color: #f5f3ef;
+}
+
+.closer-look-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 96%;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.closer-look-img-after {
+  z-index: 2;
+  will-change: mask-image, -webkit-mask-image;
+  -webkit-mask-image: linear-gradient(
+    102deg,
+    #000 calc(var(--clean-sweep) - 9%),
+    rgba(0, 0, 0, 0.5) var(--clean-sweep),
+    transparent calc(var(--clean-sweep) + 9%)
+  );
+  mask-image: linear-gradient(
+    102deg,
+    #000 calc(var(--clean-sweep) - 9%),
+    rgba(0, 0, 0, 0.5) var(--clean-sweep),
+    transparent calc(var(--clean-sweep) + 9%)
+  );
+}
+
+.closer-look-stage .before-after-badge {
+  z-index: 4;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.closer-look-stage .closer-look-badge-before {
+  opacity: 1;
+}
+
+.closer-look-stage .closer-look-badge-after {
+  opacity: 0.45;
+}
+
+.closer-look-stage.is-cleaned .closer-look-badge-before {
+  opacity: 0.4;
+}
+
+.closer-look-stage.is-cleaned .closer-look-badge-after {
+  opacity: 1;
+  background-color: #2E66BC;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 767px) {
+  .closer-look-scroll-track {
+    height: 230vh;
+  }
+  .closer-look-stage {
+    width: 100%;
+    height: 52vh;
+  }
+  .closer-look-img {
+    object-position: 50% 95%;
+  }
+}
+
 .navbar .brand-name {
   font-size: 1.45rem;
   font-weight: 500;
