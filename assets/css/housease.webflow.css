@@ -3895,8 +3895,8 @@ strong {
   padding-bottom: var(--_spacing---space-1-normal);
   padding-left: var(--_spacing---space-1-normal);
   border-radius: var(--_border-radius---border-radius--border-medium);
-  background-image: url("/assets/images/6a97122df359d0c308e71d4b_Right.avif");
-  background-position: 50%;
+  background-image: url("/assets/images/mop-floor.jpg");
+  background-position: 50% 25%;
   background-size: cover;
   justify-content: center;
   align-items: flex-end;
@@ -9956,13 +9956,13 @@ strong {
   border-bottom: 1px solid transparent;
   will-change: transform, opacity, background-color;
   transition:
-    transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.44s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.35s ease,
-    box-shadow 0.35s ease,
-    backdrop-filter 0.35s ease,
-    -webkit-backdrop-filter 0.35s ease,
-    border-color 0.35s ease;
+    transform 0.85s cubic-bezier(0.25, 0.85, 0.35, 1),
+    opacity 0.75s cubic-bezier(0.25, 0.85, 0.35, 1),
+    background-color 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease,
+    -webkit-backdrop-filter 0.45s ease,
+    border-color 0.45s ease;
 }
 
 .navbar .nav-wrapper {
@@ -9987,14 +9987,22 @@ strong {
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 0.18s cubic-bezier(0.4, 0, 1, 1),
-    opacity 0.15s ease;
+    transform 0.28s cubic-bezier(0.4, 0, 0.6, 1),
+    opacity 0.24s ease;
 }
 
 .navbar.is-scrolled.is-visible {
   transform: translate3d(0, 0, 0);
   opacity: 1;
   pointer-events: auto;
+  transition:
+    transform 0.85s cubic-bezier(0.25, 0.85, 0.35, 1),
+    opacity 0.75s cubic-bezier(0.25, 0.85, 0.35, 1),
+    background-color 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease,
+    -webkit-backdrop-filter 0.45s ease,
+    border-color 0.45s ease;
 }
 
 .navbar.is-scrolled .nav-wrapper {
@@ -10614,6 +10622,11 @@ a.recurring-card {
 .footer-bottom-line {
   background-color: rgba(97, 159, 188, 0.55);
   opacity: 1;
+}
+
+.footer-middle > .space-2-normal,
+.footer-middle .utility-page-wrap {
+  display: none !important;
 }
 
 @media screen and (max-width: 991px) {
