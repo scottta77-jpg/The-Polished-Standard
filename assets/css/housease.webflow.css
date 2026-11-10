@@ -10057,6 +10057,62 @@ a.recurring-card {
   max-width: 58rem;
 }
 
+.section.black:has(.review-slider) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.team-slider-wrap,
+.review-slider {
+  width: 100%;
+  max-width: 100%;
+}
+
+.review-slider .slider-img,
+.review-slider .team-img-small,
+.review-slider .slider-info-image-2 {
+  object-fit: contain;
+  object-position: 50% 50%;
+  background-color: #000;
+}
+
+.review-slider .review-small-img-wrap {
+  background-color: transparent;
+}
+
+.review-slider .team-img-small {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.review-slider .possition {
+  color: #000;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.button,
+.button-text,
+.pricing-card-button,
+.pricing-card-button-text {
+  white-space: nowrap;
+}
+
+.button {
+  flex-shrink: 0;
+}
+
+.faq-buttom-gird {
+  grid-template-columns: 1fr auto;
+}
+
+@media screen and (max-width: 991px) {
+  .faq-buttom-gird {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .section.hero h1.hero-heading {
     font-size: 2.35rem;
