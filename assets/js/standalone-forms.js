@@ -172,12 +172,79 @@
     window.addEventListener("resize", updateCloserLook);
   }
 
+  function initFloatingNavbar() {
+    var navbars = document.querySelectorAll(".navbar");
+    if (!navbars.length) return;
+
+    var revealTimer = null;
+    var lastScrollY = window.scrollY;
+    var threshold = 80;
+    var lagDelayMs = 220;
+
+    function showScrolledNav() {
+      for (var i = 0; i < navbars.length; i++) {
+        if (navbars[i].classList.contains("is-scrolled")) {
+          navbars[i].classList.remove("is-lagging");
+          navbars[i].classList.add("is-visible");
+        }
+      }
+    }
+
+    function updateNavbar(isScrollEvent) {
+      var y = window.scrollY;
+      var delta = Math.abs(y - lastScrollY);
+      lastScrollY = y;
+
+      if (y <= threshold) {
+        if (revealTimer) {
+          clearTimeout(revealTimer);
+          revealTimer = null;
+        }
+        for (var i = 0; i < navbars.length; i++) {
+          navbars[i].classList.remove("is-scrolled", "is-lagging", "is-visible");
+          // Let the hero navbar move naturally with the top of the hero
+          navbars[i].style.transform = y > 0 ? "translate3d(0, -" + y.toFixed(1) + "px, 0)" : "";
+        }
+        return;
+      }
+
+      for (var j = 0; j < navbars.length; j++) {
+        var nav = navbars[j];
+        nav.style.transform = "";
+        var wasScrolled = nav.classList.contains("is-scrolled");
+        if (!wasScrolled) {
+          nav.classList.add("is-scrolled", "is-lagging");
+          nav.classList.remove("is-visible");
+        } else if (isScrollEvent && delta > 5 && !nav.matches(":hover")) {
+          nav.classList.add("is-lagging");
+          nav.classList.remove("is-visible");
+        }
+      }
+
+      if (revealTimer) {
+        clearTimeout(revealTimer);
+      }
+      revealTimer = setTimeout(showScrolledNav, lagDelayMs);
+    }
+
+    updateNavbar(false);
+    window.addEventListener(
+      "scroll",
+      function () {
+        updateNavbar(true);
+      },
+      { passive: true }
+    );
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
+      initFloatingNavbar();
       initHeroCarousel();
       initCloserLookScroll();
     });
   } else {
+    initFloatingNavbar();
     initHeroCarousel();
     initCloserLookScroll();
   }

@@ -9946,6 +9946,87 @@ strong {
 }
 
 /* --- The Polished Standard Custom Typography & Layout Overrides --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid transparent;
+  will-change: transform, opacity, background-color;
+  transition:
+    transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.44s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease,
+    -webkit-backdrop-filter 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.navbar .nav-wrapper {
+  transition: padding-top 0.35s ease, padding-bottom 0.35s ease;
+}
+
+.navbar.is-scrolled {
+  background: linear-gradient(
+    180deg,
+    rgba(46, 102, 188, 0.62) 0%,
+    rgba(46, 102, 188, 0.48) 100%
+  );
+  background-color: rgba(46, 102, 188, 0.54);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 8px 32px rgba(14, 34, 68, 0.14);
+  border-bottom-color: rgba(255, 255, 255, 0.24);
+}
+
+.navbar.is-scrolled.is-lagging {
+  transform: translate3d(0, -100%, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.18s cubic-bezier(0.4, 0, 1, 1),
+    opacity 0.15s ease;
+}
+
+.navbar.is-scrolled.is-visible {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar.is-scrolled .nav-wrapper {
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.navbar.is-scrolled .nav-link,
+.navbar.is-scrolled .nav-link.medium-gray {
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(14, 34, 68, 0.28);
+}
+
+.navbar.is-scrolled .nav-link:hover,
+.navbar.is-scrolled .nav-link.w--current {
+  color: #F4D09A;
+}
+
+.navbar.is-scrolled .brand-logo-img {
+  height: 5.25rem;
+  margin: -0.35rem 0 -0.45rem 0;
+  filter: drop-shadow(0 1px 6px rgba(14, 34, 68, 0.3));
+}
+
+.hero-area,
+.about-hero-area,
+.service-top,
+.project-hero,
+.contact-nav-area {
+  padding-top: 9.65rem;
+}
+
 .navbrand,
 .footer-brand-link {
   display: inline-flex;
@@ -9959,10 +10040,15 @@ strong {
   display: block;
   object-fit: contain;
   margin: -0.25rem 0 -1.35rem 0;
+  transition: height 0.3s ease, margin 0.3s ease, filter 0.3s ease;
 }
 
 .brand-logo-img.brand-logo-on-light {
   filter: brightness(0.68) saturate(1.35) contrast(1.15);
+}
+
+.navbar.is-scrolled .brand-logo-img.brand-logo-on-light {
+  filter: drop-shadow(0 1px 6px rgba(14, 34, 68, 0.3));
 }
 
 .footer-logo-img {
@@ -9977,7 +10063,9 @@ img[src*="airbnb-cleaning.png"] {
   object-position: 50% 22%;
 }
 
-.feature-bg-video .w-background-video--control {
+.w-background-video--control,
+.w-backgroundvideo-backgroundvideoplaypausebutton,
+.play-pause-button {
   display: none !important;
 }
 
@@ -10001,19 +10089,19 @@ img[src*="airbnb-cleaning.png"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 5.75rem 0 1rem 0;
   overflow: hidden;
 }
 
 .closer-look-sticky .before-after-wrapper {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .closer-look-stage {
   --clean-sweep: -12%;
   position: relative;
-  width: min(100%, calc(min(68vh, 45.5rem) * 1.72));
-  height: min(68vh, 45.5rem);
+  width: min(100%, calc(min(63vh, 43.5rem) * 1.72));
+  height: min(63vh, 43.5rem);
   margin-left: auto;
   margin-right: auto;
   border-radius: var(--_border-radius---border-radius--border-normal);
@@ -10535,6 +10623,13 @@ a.recurring-card {
 }
 
 @media screen and (max-width: 767px) {
+  .hero-area,
+  .about-hero-area,
+  .service-top,
+  .project-hero,
+  .contact-nav-area {
+    padding-top: 6.75rem;
+  }
   .section.hero h1.hero-heading {
     font-size: 2.35rem;
   }
@@ -10544,6 +10639,10 @@ a.recurring-card {
   .brand-logo-img {
     height: 6.25rem;
     margin: -0.75rem 0;
+  }
+  .navbar.is-scrolled .brand-logo-img {
+    height: 4.5rem;
+    margin: -0.5rem 0;
   }
   .footer-logo-img {
     height: 9.5rem;
