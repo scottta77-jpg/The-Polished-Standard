@@ -10080,6 +10080,10 @@ img[src*="airbnb-cleaning.png"] {
   object-position: 50% 22%;
 }
 
+img[src*="fridge-cleaning.png"] {
+  object-position: 50% 25%;
+}
+
 .w-background-video--control,
 .w-backgroundvideo-backgroundvideoplaypausebutton,
 .play-pause-button {
@@ -10294,8 +10298,9 @@ a.recurring-card {
   max-width: 58rem;
 }
 
+.hero-content-wrap .max-width-37,
 .hero-content-wrap p.hero-summary {
-  max-width: 42rem;
+  max-width: 46rem;
 }
 
 .section.hero h1.hero-heading {
@@ -10590,6 +10595,70 @@ a.recurring-card {
 
 .footer .footer-link:hover {
   color: #F4D09A;
+  transform: none;
+}
+
+/* --- Staggered Character Roll-Up Hover Animation (Navbar & Footer) --- */
+.tps-roll-wrap {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.3;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.tps-roll-line {
+  display: inline-flex;
+  white-space: pre;
+}
+
+.tps-roll-line._02 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.tps-roll-char {
+  display: inline-block;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.tps-roll-line._01 .tps-roll-char {
+  transform: translate3d(0, 112%, 0);
+}
+
+.tps-roll-line._02 .tps-roll-char {
+  transform: translate3d(0, 0%, 0);
+}
+
+.navbar .nav-link:hover .tps-roll-line._01 .tps-roll-char,
+.footer .footer-link:hover .tps-roll-line._01 .tps-roll-char,
+.footer .social-link:hover .tps-roll-line._01 .tps-roll-char,
+.footer .footer-bottom-row .link:hover .tps-roll-line._01 .tps-roll-char {
+  transform: translate3d(0, 0%, 0);
+}
+
+.navbar .nav-link:hover .tps-roll-line._02 .tps-roll-char,
+.footer .footer-link:hover .tps-roll-line._02 .tps-roll-char,
+.footer .social-link:hover .tps-roll-line._02 .tps-roll-char,
+.footer .footer-bottom-row .link:hover .tps-roll-line._02 .tps-roll-char {
+  transform: translate3d(0, -112%, 0);
+}
+
+.navbar .nav-link .tps-roll-line._01,
+.footer .footer-link .tps-roll-line._01 {
+  color: #F4D09A;
+}
+
+.footer .social-link .tps-roll-line._01 {
+  color: #163A70 !important;
+}
+
+.footer .footer-bottom-row .link .tps-roll-line._01 {
+  color: #FFFFFF;
 }
 
 .footer .social-link {

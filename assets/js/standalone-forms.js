@@ -237,14 +237,63 @@
     );
   }
 
+  function initNavAndFooterRollHover() {
+    var targets = [
+      { linkSelector: ".navbar .nav-link", textSelector: null },
+      { linkSelector: ".footer .footer-link", textSelector: ".footer-link-text" },
+      { linkSelector: ".footer .social-link", textSelector: ".social-text" },
+      { linkSelector: ".footer .footer-bottom-row .link", textSelector: ".footer-bottom-strong" }
+    ];
+
+    function buildRollLine(text, className, stepSec, isHidden) {
+      var line = document.createElement("span");
+      line.className = "tps-roll-line " + className;
+      if (isHidden) {
+        line.setAttribute("aria-hidden", "true");
+      }
+      var chars = Array.from(text);
+      for (var i = 0; i < chars.length; i++) {
+        var ch = document.createElement("span");
+        ch.className = "tps-roll-char";
+        ch.textContent = chars[i] === " " ? "\u00A0" : chars[i];
+        ch.style.transitionDelay = (i * stepSec).toFixed(3) + "s";
+        line.appendChild(ch);
+      }
+      return line;
+    }
+
+    targets.forEach(function (cfg) {
+      var links = document.querySelectorAll(cfg.linkSelector);
+      for (var i = 0; i < links.length; i++) {
+        var linkEl = links[i];
+        var textEl = cfg.textSelector ? linkEl.querySelector(cfg.textSelector) : linkEl;
+        if (!textEl || textEl.querySelector(".tps-roll-wrap")) continue;
+
+        var rawText = (textEl.textContent || "").trim();
+        if (!rawText) continue;
+
+        var stepSec = Math.min(0.02, 0.28 / Math.max(rawText.length, 1));
+        var wrap = document.createElement("span");
+        wrap.className = "tps-roll-wrap";
+        wrap.appendChild(buildRollLine(rawText, "_01", stepSec, false));
+        wrap.appendChild(buildRollLine(rawText, "_02", stepSec, true));
+
+        textEl.textContent = "";
+        textEl.appendChild(wrap);
+      }
+    });
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       initFloatingNavbar();
+      initNavAndFooterRollHover();
       initHeroCarousel();
       initCloserLookScroll();
     });
   } else {
     initFloatingNavbar();
+    initNavAndFooterRollHover();
     initHeroCarousel();
     initCloserLookScroll();
   }
