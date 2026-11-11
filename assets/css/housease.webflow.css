@@ -10121,7 +10121,7 @@ img[src*="fridge-cleaning.png"] {
 .closer-look-stage {
   --clean-sweep: -12%;
   position: relative;
-  width: min(100%, calc(min(63vh, 43.5rem) * 1.72));
+  width: min(100%, calc(min(63vh, 43.5rem) * 1.54));
   height: min(63vh, 43.5rem);
   margin-left: auto;
   margin-right: auto;
@@ -10137,7 +10137,7 @@ img[src*="fridge-cleaning.png"] {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 96%;
+  object-position: 50% 60%;
   display: block;
   pointer-events: none;
   user-select: none;
@@ -10192,7 +10192,7 @@ img[src*="fridge-cleaning.png"] {
     height: 52vh;
   }
   .closer-look-img {
-    object-position: 50% 95%;
+    object-position: 50% 64%;
   }
 }
 
