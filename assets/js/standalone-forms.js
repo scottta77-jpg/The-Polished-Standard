@@ -143,6 +143,9 @@
     var stage = document.querySelector(".closer-look-stage");
     if (!track || !stage) return;
 
+    var labelEl = stage.querySelector(".closer-look-scroll-label");
+    var pctEl = stage.querySelector(".closer-look-scroll-pct");
+
     function updateCloserLook() {
       var rect = track.getBoundingClientRect();
       var scrollable = track.offsetHeight - window.innerHeight;
@@ -160,6 +163,21 @@
       var sweepPct = -12 + eased * 124; // -12% -> +112%
 
       stage.style.setProperty("--clean-sweep", sweepPct.toFixed(2) + "%");
+      stage.style.setProperty("--clean-progress", eased.toFixed(4));
+
+      if (pctEl) {
+        pctEl.textContent = Math.round(eased * 100) + "%";
+      }
+      if (labelEl) {
+        if (cleanProgress >= 0.92) {
+          labelEl.textContent = "Spotless";
+        } else if (cleanProgress > 0.03) {
+          labelEl.textContent = "Scroll to clean";
+        } else {
+          labelEl.textContent = "Scroll to clean";
+        }
+      }
+
       if (cleanProgress >= 0.85) {
         stage.classList.add("is-cleaned");
       } else {
