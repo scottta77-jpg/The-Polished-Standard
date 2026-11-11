@@ -1,5 +1,5 @@
 {
-  "name": "housease-site",
+  "name": "thepolishedstandard",
   "version": "1.0.0",
   "private": true,
   "description": "Exact 1:1 standalone replica of HousEase (housease.webflow.io) with all 28 pages, local assets, GSAP 3.15, and Webflow IX3 animations",
