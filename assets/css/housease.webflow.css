@@ -10588,9 +10588,37 @@ a.recurring-card {
   color: #FFFFFF;
 }
 
-.footer .footer-link:hover,
-.footer .social-link:hover .social-text {
+.footer .footer-link:hover {
   color: #F4D09A;
+}
+
+.footer .social-link {
+  border: 1px solid rgba(244, 208, 154, 0.85) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.footer .social-link .social-text {
+  color: #FFFFFF !important;
+  font-weight: 500;
+}
+
+.footer .social-link .dot {
+  background-color: #F4D09A !important;
+}
+
+.footer .social-link:hover {
+  background-color: #F4D09A !important;
+  border-color: #F4D09A !important;
+  transform: translateY(-2px);
+}
+
+.footer .social-link:hover .social-text {
+  color: #163A70 !important;
+}
+
+.footer .social-link:hover .dot {
+  background-color: #163A70 !important;
 }
 
 /* 4. Subtle borders & dividers on #2E66BC sections using Softer Lower Blue (#619FBC) */
@@ -10605,8 +10633,7 @@ a.recurring-card {
 .section.black .marquee-cta-card,
 .review-slider .team-img-small,
 .slider-btn,
-.s-slider-button,
-.social-link {
+.s-slider-button {
   border-color: #619FBC;
 }
 
@@ -10627,14 +10654,58 @@ a.recurring-card {
   border-right-color: rgba(97, 159, 188, 0.55);
 }
 
+.footer-left {
+  grid-column-gap: 1.75rem;
+  grid-row-gap: 1.75rem;
+}
+
+.footer-brand-wrap {
+  grid-column-gap: 1.75rem;
+  grid-row-gap: 1.75rem;
+}
+
+.footer-left,
+.footer-middle,
+.footer-right {
+  padding-bottom: 2.75rem;
+}
+
+.footer-right .footer-list {
+  margin-bottom: 1.5rem;
+}
+
+.footer-right .footer-social-link-wrap {
+  margin-top: 0;
+}
+
 .footer-line,
 .footer-bottom-line {
   background-color: rgba(97, 159, 188, 0.55);
   opacity: 1;
 }
 
+.footer .footer-bottom-row {
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+
+.footer .footer-bottom-row .link {
+  text-decoration: none;
+}
+
+.footer .footer-bottom-row .footer-bottom-strong {
+  color: #F4D09A;
+  transition: color 0.25s ease;
+}
+
+.footer .footer-bottom-row .link:hover .footer-bottom-strong {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
 .footer-middle > .space-2-normal,
-.footer-middle .utility-page-wrap {
+.footer-middle .utility-page-wrap,
+.footer-video-wrap {
   display: none !important;
 }
 
