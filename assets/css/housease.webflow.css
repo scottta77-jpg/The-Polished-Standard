@@ -10195,19 +10195,132 @@ img[src*="fridge-cleaning.png"] {
   position: absolute;
   bottom: 1.25rem;
   left: 50%;
-  transform: translate3d(-50%, 0, 0);
+  transform: translateX(-50%);
   z-index: 5;
+  background: rgba(16, 34, 64, 0.78);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(244, 208, 154, 0.42);
+  border-radius: 999px;
+  padding: 0.38rem 0.95rem 0.38rem 0.42rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #FFFFFF;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
   pointer-events: none;
   user-select: none;
-  animation: closerLookArrowBounce 1.4s ease-in-out infinite;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.closer-look-button-arrow {
-  transform: rotate(90deg);
+.closer-look-ring-wrap {
+  position: relative;
+  width: 1.85rem;
+  height: 1.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.closer-look-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.closer-look-ring-track {
+  stroke: rgba(255, 255, 255, 0.22);
+}
+
+.closer-look-ring-fill {
+  stroke: #F4D09A;
+  stroke-linecap: round;
+  stroke-dashoffset: calc(78.54 - (78.54 * var(--clean-progress, 0)));
+  transition: stroke-dashoffset 0.06s linear;
+}
+
+.closer-look-arrow-icon {
+  position: absolute;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: #F4D09A;
+  animation: closerLookArrowBounce 1.5s ease-in-out infinite;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.closer-look-check-icon {
+  position: absolute;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: #F4D09A;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 @keyframes closerLookArrowBounce {
+  0%, 100% {
+    transform: translateY(-1.5px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+.closer-look-scroll-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+.closer-look-scroll-pct {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #F4D09A;
+  min-width: 2.3rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.closer-look-stage.is-cleaned .closer-look-arrow-icon {
+  opacity: 0;
+  transform: translateY(4px) scale(0.6);
+  animation: none;
+}
+
+.closer-look-stage.is-cleaned .closer-look-check-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.closer-look-stage.is-cleaned .closer-look-scroll-cue {
+  background: rgba(46, 102, 188, 0.92);
+  border-color: #F4D09A;
+}
+
+/* Site-wide down-bouncing scroll arrow (button arrow styling & size, hidden on A Closer Look) */
+.site-scroll-cue {
+  position: fixed;
+  bottom: 1.35rem;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  z-index: 90;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: 0 6px 20px rgba(14, 34, 68, 0.2);
+  border: 1px solid rgba(14, 34, 68, 0.08);
+  animation: siteScrollArrowBounce 1.4s ease-in-out infinite;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.site-scroll-cue-arrow {
+  transform: rotate(90deg);
+}
+
+@keyframes siteScrollArrowBounce {
   0%, 100% {
     transform: translate3d(-50%, 0, 0);
   }
@@ -10216,10 +10329,9 @@ img[src*="fridge-cleaning.png"] {
   }
 }
 
-.closer-look-stage.is-scrolling-clean .closer-look-scroll-cue,
-.closer-look-stage.is-cleaned .closer-look-scroll-cue {
+.site-scroll-cue.is-hidden {
   opacity: 0 !important;
-  visibility: hidden;
+  visibility: hidden !important;
   animation-play-state: paused;
 }
 

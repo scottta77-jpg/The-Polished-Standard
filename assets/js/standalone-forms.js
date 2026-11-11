@@ -143,7 +143,8 @@
     var stage = document.querySelector(".closer-look-stage");
     if (!track || !stage) return;
 
-    var cueEl = stage.querySelector(".closer-look-scroll-cue");
+    var labelEl = stage.querySelector(".closer-look-scroll-label");
+    var pctEl = stage.querySelector(".closer-look-scroll-pct");
 
     function updateCloserLook() {
       var rect = track.getBoundingClientRect();
@@ -164,15 +165,17 @@
       stage.style.setProperty("--clean-sweep", sweepPct.toFixed(2) + "%");
       stage.style.setProperty("--clean-progress", eased.toFixed(4));
 
-      if (cueEl) {
-        var fadeOpacity = Math.max(0, Math.min(1, 1 - cleanProgress * 5));
-        cueEl.style.opacity = fadeOpacity.toFixed(3);
+      if (pctEl) {
+        pctEl.textContent = Math.round(eased * 100) + "%";
       }
-
-      if (cleanProgress >= 0.18) {
-        stage.classList.add("is-scrolling-clean");
-      } else {
-        stage.classList.remove("is-scrolling-clean");
+      if (labelEl) {
+        if (cleanProgress >= 0.92) {
+          labelEl.textContent = "Spotless";
+        } else if (cleanProgress > 0.03) {
+          labelEl.textContent = "Scroll to clean";
+        } else {
+          labelEl.textContent = "Scroll to clean";
+        }
       }
 
       if (cleanProgress >= 0.85) {
@@ -185,6 +188,72 @@
     updateCloserLook();
     window.addEventListener("scroll", updateCloserLook, { passive: true });
     window.addEventListener("resize", updateCloserLook);
+  }
+
+  function initSiteScrollCue() {
+    var cue = document.querySelector(".site-scroll-cue");
+    if (!cue && document.body) {
+      cue = document.createElement("div");
+      cue.className = "button-arrow-wrap site-scroll-cue";
+      cue.setAttribute("aria-hidden", "true");
+      cue.innerHTML =
+        '<svg class="button-arrow site-scroll-cue-arrow" fill="none" viewBox="0 0 23 16" width="100%" xmlns="http://www.w3.org/2000/svg">' +
+        '<path d="M21.7132 6.85742C22.3444 6.85742 22.8561 7.36912 22.8561 8.00034C22.8561 8.63155 22.3444 9.14325 21.7132 9.14325C21.082 9.14325 20.5703 8.63155 20.5703 8.00034C20.5703 7.36912 21.082 6.85742 21.7132 6.85742Z" fill="currentColor"></path>' +
+        '<path d="M18.2835 6.85693C18.9148 6.85693 19.4265 7.36863 19.4265 7.99985C19.4265 8.63106 18.9148 9.14277 18.2835 9.14277C17.6523 9.14277 17.1406 8.63106 17.1406 7.99985C17.1406 7.36863 17.6523 6.85693 18.2835 6.85693Z" fill="currentColor"></path>' +
+        '<path d="M18.2835 3.42871C18.9148 3.42871 19.4265 3.94041 19.4265 4.57163C19.4265 5.20284 18.9148 5.71454 18.2835 5.71454C17.6523 5.71454 17.1406 5.20284 17.1406 4.57163C17.1406 3.94041 17.6523 3.42871 18.2835 3.42871Z" fill="currentColor"></path>' +
+        '<path d="M18.2835 10.2856C18.9148 10.2856 19.4265 10.7973 19.4265 11.4286C19.4265 12.0598 18.9148 12.5715 18.2835 12.5715C17.6523 12.5715 17.1406 12.0598 17.1406 11.4286C17.1406 10.7973 17.6523 10.2856 18.2835 10.2856Z" fill="currentColor"></path>' +
+        '<path d="M14.8578 6.85693C15.489 6.85693 16.0007 7.36863 16.0007 7.99985C16.0007 8.63106 15.489 9.14277 14.8578 9.14277C14.2265 9.14277 13.7148 8.63106 13.7148 7.99985C13.7148 7.36863 14.2265 6.85693 14.8578 6.85693Z" fill="currentColor"></path>' +
+        '<path d="M11.432 6.85791C12.0632 6.85791 12.5749 7.36961 12.5749 8.00083C12.5749 8.63204 12.0632 9.14374 11.432 9.14374C10.8008 9.14374 10.2891 8.63204 10.2891 8.00083C10.2891 7.36961 10.8008 6.85791 11.432 6.85791Z" fill="currentColor"></path>' +
+        '<path d="M8.00229 6.85693C8.63351 6.85693 9.14521 7.36863 9.14521 7.99985C9.14521 8.63106 8.63351 9.14277 8.00229 9.14277C7.37108 9.14277 6.85938 8.63106 6.85938 7.99985C6.85938 7.36863 7.37108 6.85693 8.00229 6.85693Z" fill="currentColor"></path>' +
+        '<path d="M4.5726 6.85693C5.20382 6.85693 5.71552 7.36863 5.71552 7.99985C5.71552 8.63106 5.20382 9.14277 4.5726 9.14277C3.94139 9.14277 3.42969 8.63106 3.42969 7.99985C3.42969 7.36863 3.94139 6.85693 4.5726 6.85693Z" fill="currentColor"></path>' +
+        '<path d="M1.14292 6.85742C1.77413 6.85742 2.28583 7.36912 2.28583 8.00034C2.28583 8.63155 1.77413 9.14325 1.14292 9.14325C0.511701 9.14325 0 8.63155 0 8.00034C0 7.36912 0.511701 6.85742 1.14292 6.85742Z" fill="currentColor"></path>' +
+        '<path d="M14.8578 4.76837e-07C15.489 4.76837e-07 16.0007 0.511701 16.0007 1.14292C16.0007 1.77413 15.489 2.28583 14.8578 2.28583C14.2265 2.28583 13.7148 1.77413 13.7148 1.14292C13.7148 0.511701 14.2265 4.76837e-07 14.8578 4.76837e-07Z" fill="currentColor"></path>' +
+        '<path d="M14.8578 13.7144C15.489 13.7144 16.0007 14.2261 16.0007 14.8573C16.0007 15.4885 15.489 16.0002 14.8578 16.0002C14.2265 16.0002 13.7148 15.4885 13.7148 14.8573C13.7148 14.2261 14.2265 13.7144 14.8578 13.7144Z" fill="currentColor"></path>' +
+        "</svg>";
+      document.body.appendChild(cue);
+    }
+    if (!cue) return;
+
+    var closerLookSection = document.querySelector(".section.before-after, .closer-look-scroll-track");
+    var closerLookStage = document.querySelector(".closer-look-stage");
+
+    function updateSiteScrollCue() {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var hide = false;
+
+      if (closerLookSection) {
+        var secRect = closerLookSection.getBoundingClientRect();
+        // Hide throughout the A Closer Look clean/dirty scroll animation section
+        if (secRect.top <= vh * 0.65 && secRect.bottom >= vh * 0.35) {
+          hide = true;
+        }
+      }
+      if (!hide && closerLookStage) {
+        var stageRect = closerLookStage.getBoundingClientRect();
+        if (stageRect.top <= vh * 0.85 && stageRect.bottom >= vh * 0.15) {
+          hide = true;
+        }
+      }
+
+      // Also hide at the very bottom of the page when there is nothing left to scroll
+      var docHeight = Math.max(
+        document.body ? document.body.scrollHeight : 0,
+        document.documentElement ? document.documentElement.scrollHeight : 0
+      );
+      if (window.scrollY + vh >= docHeight - 100) {
+        hide = true;
+      }
+
+      if (hide) {
+        cue.classList.add("is-hidden");
+      } else {
+        cue.classList.remove("is-hidden");
+      }
+    }
+
+    updateSiteScrollCue();
+    window.addEventListener("scroll", updateSiteScrollCue, { passive: true });
+    window.addEventListener("resize", updateSiteScrollCue);
   }
 
   function initMobileNavbarLogo() {
@@ -389,6 +458,7 @@
       initNavAndFooterRollHover();
       initHeroCarousel();
       initCloserLookScroll();
+      initSiteScrollCue();
       initMobileServicesScroll();
     });
   } else {
@@ -397,6 +467,7 @@
     initNavAndFooterRollHover();
     initHeroCarousel();
     initCloserLookScroll();
+    initSiteScrollCue();
     initMobileServicesScroll();
   }
 
