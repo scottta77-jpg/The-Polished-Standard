@@ -9548,19 +9548,20 @@ strong {
   }
 
   .horizontal-line {
-    width: 1.8rem;
+    width: 1.35rem;
   }
 
   .work-small-image-wrapper {
-    transform: scale(.7);
+    grid-column-gap: .4rem;
+    grid-row-gap: .4rem;
   }
 
   .work-small-image {
-    width: 3.5rem;
+    width: 1.85rem;
   }
 
   .work-card-block {
-    max-width: 15rem;
+    max-width: 15.5rem;
   }
 
   .work-image {
@@ -11000,41 +11001,431 @@ img[src*="single-salon-shopfront.jpg"] {
   }
 }
 
+.pricing-titel-top-block {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.most-popula {
+  white-space: nowrap;
+  padding: 0.28rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
 @media screen and (max-width: 767px) {
+  /* 1. Compact Mobile Navbar & TPS Mobile Logo */
   .hero-area,
   .about-hero-area,
   .service-top,
   .project-hero,
   .contact-nav-area,
   .page-wrapper > .navbar + .main {
-    padding-top: 6.75rem;
+    padding-top: 4.5rem;
   }
+
+  .navbar .nav-wrapper {
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+    min-height: 3.1rem;
+  }
+
+  .navbar.is-scrolled .nav-wrapper {
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  .navbar .brand-name {
+    font-size: 1.15rem;
+  }
+
+  .navbar .brand-logo-img {
+    content: url("/assets/images/TPS%20Mobile%20logo.png");
+    height: 2.35rem !important;
+    width: auto !important;
+    margin: 0 !important;
+    filter: drop-shadow(0 1px 4px rgba(14, 34, 68, 0.35)) !important;
+  }
+
+  .navbar.is-scrolled .brand-logo-img {
+    height: 2.15rem !important;
+    margin: 0 !important;
+  }
+
+  .navbar .menu.w-nav-button,
+  .navbar .menu-black.w-nav-button {
+    padding: 0.42rem 0.52rem !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.2rem !important;
+    line-height: 1 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .section.hero h1.hero-heading {
     font-size: 2.35rem;
   }
-  .navbar .brand-name {
-    font-size: 1.2rem;
-  }
-  .brand-logo-img {
-    height: 6.25rem;
-    margin: -0.75rem 0;
-  }
-  .navbar.is-scrolled .brand-logo-img {
-    height: 4.5rem;
-    margin: -0.5rem 0;
-  }
+
   .footer-logo-img {
     height: 9.5rem;
   }
-  .about-info-wrap .brand-name.black {
-    font-size: 1.85rem;
-  }
+
   .pricing-prices {
     font-size: 1.65rem;
   }
-  .about-top-right .stat-counter-text,
-  .about-right-bottom .stat-counter-text {
-    font-size: 2rem;
+
+  /* 2. Section Below Hero (.section.about) — Full-width Clean Section Background */
+  .section.about {
+    overflow: hidden;
+  }
+
+  .section.about > .space-8-large {
+    padding-top: 2.5rem !important;
+  }
+
+  .section.about .about-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 1.5rem !important;
+    padding: 2rem 1.25rem !important;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 12px 36px rgba(14, 34, 68, 0.06);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0.85rem !important;
+    position: relative !important;
+  }
+
+  .section.about .about-info-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 0 0.5rem 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  .section.about .about-info-wrap .brand-name.black {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .section.about .about-info-wrap .max-width-30 {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0.25rem !important;
+  }
+
+  .section.about .about-paragraph {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .section.about .about-info-wrap > .space-3-large {
+    padding-top: 1.25rem !important;
+  }
+
+  .section.about .about-marque,
+  .section.about .about-marque-item-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .section.about .about-info-wrap > .space-4-small {
+    padding-top: 1.25rem !important;
+  }
+
+  .section.about .about-info-wrap .button-wrap {
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+  }
+
+  .section.about .about-top-right,
+  .section.about .about-right-bottom {
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.15rem 1.25rem !important;
+    border-radius: 1rem !important;
+    margin: 0 !important;
+  }
+
+  .section.about .about-right-bottom {
+    background-color: #f4f6fa !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+  }
+
+  .section.about .about-top-right .stat-counter-text,
+  .section.about .about-right-bottom .stat-counter-text {
+    font-size: 1.65rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .section.about .stat-card-titel {
+    margin-top: 0.3rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  /* 3. What We Clean (.section.service) — Pinned Stop-Scroll 3D Cube Animation */
+  .section.service .service-slider {
+    display: none !important;
+  }
+
+  .section.service > .space-4-medium {
+    padding-top: 0.5rem !important;
+  }
+
+  .section.service .services-sticky {
+    display: flex !important;
+    height: 310vh !important;
+    width: 100% !important;
+  }
+
+  .section.service .services-main-wrap {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow-x: clip !important;
+  }
+
+  .section.service .services-wrapper {
+    width: 88vw !important;
+    height: 82vw !important;
+    perspective: 1200px !important;
+    position: absolute !important;
+  }
+
+  .section.service .service-all-card {
+    width: 88vw !important;
+    height: 82vw !important;
+    transform-style: preserve-3d !important;
+    position: relative !important;
+  }
+
+  .section.service .services-collection-wrap {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .section.service .services-collection-wrap._01 {
+    z-index: 4;
+  }
+
+  .section.service .services-collection-wrap._02 {
+    transform-origin: 50% 100% !important;
+    transform-style: preserve-3d !important;
+    transform: translate3d(0, 0, -82vw) rotateX(-90deg) rotateY(0) rotateZ(0) !important;
+  }
+
+  .section.service .services-collection-wrap._03 {
+    transform-origin: 50% 100% !important;
+    transform-style: preserve-3d !important;
+    transform: translate3d(0, -82vw, -82vw) rotateX(180deg) rotateY(0) rotateZ(0) !important;
+  }
+
+  .section.service .services-collection-wrap._04 {
+    transform-origin: 50% 100% !important;
+    transform-style: preserve-3d !important;
+    transform: translate(0, -82vw) rotateX(90deg) rotateY(0) rotateZ(0) !important;
+  }
+
+  .section.service .services-sticky .service-collection-main {
+    padding: 0.85rem !important;
+    height: 100% !important;
+  }
+
+  .section.service .services-sticky .service-collection-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    visibility: visible !important;
+  }
+
+  .section.service .services-sticky .service-image-content {
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    bottom: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .section.service .services-sticky .service-card-title {
+    font-size: 1.05rem !important;
+    visibility: visible !important;
+  }
+
+  .section.service .services-sticky .service-icon {
+    visibility: visible !important;
+  }
+
+  /* 4. Four Simple Steps (.work-wrapper) — Prevent Step Text Size Jump & Card Overlap */
+  .work-wrapper .horizontal-line {
+    width: 1.35rem !important;
+  }
+
+  .work-wrapper .step-item-wrap {
+    max-width: 7rem !important;
+    z-index: 4;
+  }
+
+  .work-wrapper .work-small-image-wrapper {
+    grid-column-gap: 0.4rem !important;
+    column-gap: 0.4rem !important;
+    padding-right: 0.35rem !important;
+  }
+
+  .work-wrapper .work-small-image {
+    width: 1.85rem !important;
+    flex-shrink: 0;
+  }
+
+  .work-wrapper .work-small-image-wrapper .font-2-normal {
+    font-size: 0.88rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    font-weight: 500;
+  }
+
+  .work-wrapper .work-card {
+    justify-content: flex-end !important;
+  }
+
+  .work-wrapper .work-card-block {
+    width: calc(100% - 7.65rem) !important;
+    max-width: 16.5rem !important;
+    padding: 0.9rem !important;
+  }
+
+  .work-wrapper .work-image {
+    height: 10.5rem !important;
+  }
+
+  /* 5. Review Cards & Arrow Buttons (.review-slider) — Compact Card + Non-Overlapping Arrows */
+  .section.black:has(.review-slider) {
+    min-height: auto !important;
+  }
+
+  .review-slider {
+    padding-bottom: 4.25rem !important;
+  }
+
+  .review-slider .review-small-img-wrap {
+    display: none !important;
+  }
+
+  .review-slider .team-slider-card {
+    justify-content: center !important;
+  }
+
+  .review-slider .slider-card {
+    width: calc(100vw - 2.75rem) !important;
+    max-width: 19rem !important;
+    padding: 0.95rem !important;
+    border-radius: 1rem !important;
+    grid-row-gap: 0.75rem !important;
+    row-gap: 0.75rem !important;
+    margin: 0 auto !important;
+  }
+
+  .review-slider .slider-img {
+    height: 8rem !important;
+    border-radius: 0.65rem !important;
+    padding: 0.65rem !important;
+    object-fit: contain !important;
+    object-position: 50% 50% !important;
+  }
+
+  .review-slider .slider-information {
+    padding: 0.25rem !important;
+    grid-row-gap: 0.75rem !important;
+    row-gap: 0.75rem !important;
+  }
+
+  .review-slider .slider-top-info {
+    padding-bottom: 0.75rem !important;
+  }
+
+  .review-slider .revivew-paragraph {
+    font-size: 0.94rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .review-slider .reviewer-info-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+  }
+
+  .review-slider .slider-info-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+  }
+
+  .review-slider .slider-info-image-2 {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    flex-shrink: 0;
+  }
+
+  .review-slider .possition {
+    font-size: 0.9rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .review-slider .ratiing-wrap {
+    padding: 0.3rem 0.65rem !important;
+    font-size: 0.85rem !important;
+    flex-shrink: 0;
+  }
+
+  .review-slider .slider-btn {
+    width: 3.6rem !important;
+    height: 2.5rem !important;
+    bottom: 0.4rem !important;
+    top: auto !important;
+    margin: 0 !important;
+    border-radius: 0.6rem !important;
+  }
+
+  .review-slider .slider-btn.left {
+    left: calc(50% - 4.1rem) !important;
+    right: auto !important;
+  }
+
+  .review-slider .slider-btn.right {
+    left: calc(50% + 0.5rem) !important;
+    right: auto !important;
   }
 }
 

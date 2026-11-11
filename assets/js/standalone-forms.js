@@ -190,6 +190,89 @@
     window.addEventListener("resize", updateCloserLook);
   }
 
+  function initMobileNavbarLogo() {
+    var logos = document.querySelectorAll(".navbar .brand-logo-img");
+    if (!logos.length) return;
+
+    var desktopSrc = "/assets/images/the-polished-standard-logo.png";
+    var mobileSrc = "/assets/images/TPS Mobile logo.png";
+
+    function syncLogo() {
+      var wantMobile = window.innerWidth <= 767;
+      var targetSrc = wantMobile ? mobileSrc : desktopSrc;
+      for (var i = 0; i < logos.length; i++) {
+        if (logos[i].getAttribute("src") !== targetSrc) {
+          logos[i].setAttribute("src", targetSrc);
+        }
+      }
+    }
+
+    syncLogo();
+    window.addEventListener("resize", syncLogo);
+  }
+
+  function initMobileServicesScroll() {
+    var sticky = document.querySelector(".services-sticky");
+    if (!sticky) return;
+
+    var cube = sticky.querySelector(".service-all-card");
+    var marquees = sticky.querySelectorAll(".service-marque-list");
+    if (!cube) return;
+
+    var wasMobile = false;
+
+    function updateMobileServices() {
+      var isMobile = window.innerWidth <= 767;
+      if (!isMobile) {
+        if (wasMobile) {
+          cube.style.transform = "";
+          for (var m = 0; m < marquees.length; m++) {
+            marquees[m].style.transform = "";
+          }
+          wasMobile = false;
+        }
+        return;
+      }
+      wasMobile = true;
+
+      var rect = sticky.getBoundingClientRect();
+      var scrollable = sticky.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+
+      var raw = -rect.top / scrollable;
+      var clamped = Math.max(0, Math.min(1, raw));
+
+      // Hold card 1 for first 10%, rotate through 4 faces across 10%..90%, hold card 4 for 90%..100%
+      var rotProgress = (clamped - 0.10) / 0.80;
+      rotProgress = Math.max(0, Math.min(1, rotProgress));
+
+      var deg = rotProgress * 270;
+      var rad = (deg * Math.PI) / 180;
+      // Cube face height on mobile is 82vw -> half-depth R = 41vw
+      var rVw = 41;
+      var yVw = -rVw * Math.sin(rad);
+      var zVw = -rVw * (1 - Math.cos(rad));
+
+      cube.style.transform =
+        "translate3d(0px, " +
+        yVw.toFixed(3) +
+        "vw, " +
+        zVw.toFixed(3) +
+        "vw) rotateX(" +
+        deg.toFixed(2) +
+        "deg)";
+
+      var marqueeX = (-clamped * 100).toFixed(2);
+      for (var i = 0; i < marquees.length; i++) {
+        marquees[i].style.transform = "translate3d(" + marqueeX + "%, 0px, 0px)";
+      }
+    }
+
+    updateMobileServices();
+    window.addEventListener("scroll", updateMobileServices, { passive: true });
+    window.addEventListener("resize", updateMobileServices);
+  }
+
   function initFloatingNavbar() {
     var navbars = document.querySelectorAll(".navbar");
     if (!navbars.length) return;
@@ -305,15 +388,19 @@
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       initFloatingNavbar();
+      initMobileNavbarLogo();
       initNavAndFooterRollHover();
       initHeroCarousel();
       initCloserLookScroll();
+      initMobileServicesScroll();
     });
   } else {
     initFloatingNavbar();
+    initMobileNavbarLogo();
     initNavAndFooterRollHover();
     initHeroCarousel();
     initCloserLookScroll();
+    initMobileServicesScroll();
   }
 
   window.Webflow = window.Webflow || [];
